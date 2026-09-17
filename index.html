@@ -7,6 +7,7 @@
     <title>Nexora — Connecting Brands With Influence | Indian Influencer Marketing</title>
     <meta name="description" content="Nexora connects forward-thinking brands with high-engagement micro & emerging creators across India. Authentic conversations, regional reach, and impactful campaigns." />
     <meta name="keywords" content="Influencer Marketing India, Micro Influencers India, Creator Economy India, Regional Influencer Campaigns Mumbai Delhi Bengaluru" />
+    <link rel="stylesheet" href="/mobile-blocker.css" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +15,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#090D1A] text-slate-100 font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-indigo-500 selection:text-white">
+    <section class="mobile-blocker" aria-labelledby="mobile-blocker-title">
+      <div class="mobile-blocker__logo" aria-hidden="true">N</div>
+      <p class="mobile-blocker__eyebrow">Desktop access only</p>
+      <h1 id="mobile-blocker-title">Please open Nexora on a laptop or desktop</h1>
+      <p>For security reasons, this experience is unavailable on mobile devices. Please continue on a larger screen.</p>
+    </section>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <link rel="stylesheet" href="/assets/nexora.css" />
+    <script>
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest('a[href*="docs.google.com/forms"]')
+
+        if (link) {
+          event.preventDefault()
+          window.location.assign('/creator/')
+        }
+      })
+    </script>
+    <script type="module" src="/assets/nexora.js"></script>
   </body>
 </html>
-
