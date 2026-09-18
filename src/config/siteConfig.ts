@@ -13,7 +13,7 @@ export const siteConfig = {
    * Replace this placeholder with your live Google Form URL.
    * All creator registration CTA buttons across the website reference this single constant.
    */
-  CREATOR_GOOGLE_FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSc7QWnexoraCreatorNetworkRegister/viewform",
+  CREATOR_GOOGLE_FORM_URL: "https://form.nexora.gripe/",
 
   contact: {
     email: "collaborate@nexoramarketing.in",
