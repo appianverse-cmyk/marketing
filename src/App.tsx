@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, ArrowUpRight, ShieldCheck, Search, Fingerprint, FileCheck2, Radar, LockKeyhole, Check, Menu, X, Globe, ChevronRight } from 'lucide-react';
 import './App.css';
 import { ProfilePage } from './ProfilePage';
+import { ThankYouPage } from './ThankYouPage';
 
 const services = [
   { icon: Radar, number: '01', title: 'Dark web monitoring', text: 'Identify exposed email addresses, credentials, and personal information in monitored breach sources and dark web datasets.', tags: ['Exposure alerts', 'Breach intelligence'] },
@@ -18,6 +19,7 @@ const faqs = [
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  if (['/thankyou', '/thank-you'].includes(window.location.pathname.replace(/\/+$/, ''))) return <ThankYouPage />;
   if (window.location.pathname.replace(/\/+$/, '') === '/savikavya-profile') return <ProfilePage />;
   return <div className="privacy-site">
     <nav className="navigation wrap" aria-label="Main navigation">
