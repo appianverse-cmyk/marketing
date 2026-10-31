@@ -1,13 +1,35 @@
-import { ArrowLeft, ArrowUpRight, ShieldCheck, Mail, LockKeyhole, Paperclip, Check, FileSearch, Send, Fingerprint, ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowUpRight, ShieldCheck, Mail, LockKeyhole, Paperclip, Check, FileSearch, Send, Fingerprint, ArrowRight, Monitor } from 'lucide-react';
 import './ProfilePage.css';
 
 const deletionFormUrl = 'https://form.nexora.gripe/';
+const mobileProfileQuery = '(max-width: 767px), (pointer: coarse) and (max-height: 500px)';
 const attachments = [
   { title: 'Bank information', url: 'https://mega.nz/file/uzJUhIzZ#dEd6hQx2bb-pUFtMjVH5azWZKAAXSKFNER06u9bzUW4' },
   { title: 'Aadhaar card', url: 'https://mega.nz/file/Ci4zAbgB#NpkUsxdCiAckkEe7KqFcRXg1jGleT_vzz0dWKIv-rLY' },
 ];
 
 export function ProfilePage() {
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(mobileProfileQuery).matches);
+  useEffect(() => {
+    const query = window.matchMedia(mobileProfileQuery);
+    const updateDevice = () => setIsMobile(query.matches);
+    query.addEventListener('change', updateDevice);
+    updateDevice();
+    return () => query.removeEventListener('change', updateDevice);
+  }, []);
+
+  if (isMobile) return <main className="profile-mobile-notice">
+    <a className="brand" href="/"><ShieldCheck size={27}/> Nexora</a>
+    <section aria-labelledby="desktop-required-title">
+      <span className="desktop-notice-icon"><Monitor size={38} strokeWidth={1.5}/></span>
+      <div className="eyebrow"><LockKeyhole size={14}/> DESKTOP ACCESS ONLY</div>
+      <h1 id="desktop-required-title">Please use a laptop<br/>or desktop.</h1>
+      <p>For security, this personal data report is available on a laptop or desktop. Open this same link on your computer to view the report and request data deletion.</p>
+      <a className="text-link" href="/"><ArrowLeft size={16}/> Back to Nexora</a>
+    </section>
+  </main>;
+
   return <div className="privacy-site profile-page">
     <nav className="navigation wrap" aria-label="Profile navigation"><a className="brand" href="/"><ShieldCheck color="#a2efcf" size={27}/> Nexora</a><a className="text-link" href="/"><ArrowLeft size={15}/> Back to home</a></nav>
     <main className="wrap profile-main">
